@@ -1,0 +1,26 @@
+{
+  "name": "vue-laravel-mix",
+  "license": "MIT",
+  "scripts": {
+    "webpack:base": "node_modules/webpack/bin/webpack.js --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "dev": "NODE_ENV=development yarn webpack:base --progress",
+    "watch": "yarn dev --watch",
+    "hot": "NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "NODE_ENV=production yarn webpack:base",
+    "lint": "eslint -c .eslintrc.prod.json --ext vue,js src",
+    "lint:fix": "yarn lint --fix"
+  },
+  "dependencies": {
+    "vue": "^2.5.16",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "eslint": "^5.0.0",
+    "eslint-plugin-vue": "^4.5.0",
+    "html-webpack-plugin": "^3.2.0",
+    "laravel-mix": "^2.1.11"
+  }
+}
