@@ -17,14 +17,14 @@ You can use it on your local env with Node and Yarn, or you can use it with Dock
 
 ### Docker
 
-For Docker, we use [vessel](https://github.com/shipping-docker/vessel) to help us with the commands.
+For Docker, we use [fwd](https://github.com/fireworkweb/fwd) to help us with the commands.
 
-- `./vessel hot`: Web server with hot reload on `http://localhost:8080/`.
-- `./vessel yarn *`: Use Yarn inside Docker.
-- `./vessel npm *`: Use npm inside Docker.
-- `./vessel node *`: Use Node inside Docker.
+- `./fwd hot`: Web server with hot reload on `http://localhost:8080/`.
+- `./fwd yarn *`: Use Yarn inside Docker.
+- `./fwd npm *`: Use npm inside Docker.
+- `./fwd node *`: Use Node inside Docker.
 
-Tip: add `alias v=./vessel` to help you with commands.
+Tip: add `alias fwd=./fwd` to help you with commands.
 
 ## License
 

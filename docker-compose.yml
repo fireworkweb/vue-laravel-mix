@@ -1,16 +1,12 @@
 version: '2'
 services:
   node:
-    build:
-      context: ./docker/node
-      dockerfile: Dockerfile
-      args:
-        uid: "${WWWUSER}"
-    user: node
+    image: "fireworkweb/node:alpine"
     volumes:
-     - .:/var/www/html:cached
-    networks:
-     - vessel
+     - .:/app:cached
+    environment:
+      ASUSER: "${ASUSER}"
+
 networks:
   vessel:
     driver: "bridge"

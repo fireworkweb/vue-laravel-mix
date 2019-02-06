@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+export ASUSER=${ASUSER:-$UID}
+export COMPOSE_EXEC_FLAGS=${COMPOSE_EXEC_FLAGS:-""}
+
+# Is the environment running
+PSRESULT="$(docker-compose ps -q)"
+if [ ! -z "$PSRESULT" ]; then
+    IS_RUNNING="yes"
+else
+    IS_RUNNING="no"
+fi
+
+# Create base docker-compose command to run
+COMPOSE="docker-compose"
+COMPOSE_EXEC="$COMPOSE exec $COMPOSE_EXEC_FLAGS"
+
+if [ $# -eq 0 ]; then
+    $COMPOSE ps
+    exit 0
+fi
+
+# Start up containers
+elif [ "$1" == "start" ]; then
+    $COMPOSE up -d
+
+# Stop the containers
+elif [ "$1" == "stop" ]; then
+    $COMPOSE down
+
+# If "node" is used, run node
+# from our node container
+elif [ "$1" == "node" ]; then
+    shift 1
+    $COMPOSE run --rm \
+        node \
+        node "$@"
+
+# If "npm" is used, run npm
+# from our node container
+elif [ "$1" == "npm" ]; then
+    shift 1
+    $COMPOSE run --rm \
+        node \
+        npm "$@"
+
+# If "yarn" is used, run yarn
+# from our node container
+elif [ "$1" == "yarn" ]; then
+    shift 1
+    $COMPOSE run --rm \
+        node \
+        yarn "$@"
+
+# If "hot" is used, run yarn hot
+# from our node container
+elif [ "$1" == "hot" ]; then
+    shift 1
+    $COMPOSE run --rm \
+        -p 8080:8080 \
+        node \
+        yarn hot
+
+# Else, pass-thru args to docker-compose
+else
+    $COMPOSE "$@"
+fi
