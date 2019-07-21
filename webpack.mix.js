@@ -1,6 +1,6 @@
 /* global require, __dirname */
 const mix = require('laravel-mix');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { resolve } = require('path');
 
@@ -25,11 +25,10 @@ const webpackConfig = {
     },
 
     plugins: [
-        new CleanWebpackPlugin([
-            'dist/*',
-        ], {
-            exclude: [
-                '.gitignore',
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: [
+                '*',
+                '!.gitignore',
             ],
         }),
         new HtmlWebpackPlugin({
